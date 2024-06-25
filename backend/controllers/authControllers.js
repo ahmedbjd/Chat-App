@@ -76,7 +76,13 @@ const login = async (req, res) => {
 }
 
 const signOut = (req, res) => {
-    res.send("sign out");
+    try {
+        res.cookie("token", "", {maxAge: 0});
+        res.status(200).json({ message: "Logged out successfully" });
+    } catch (error) {
+        console.log("Error in signOut controller", error.message);
+        res.send(500).json({error: "Inernal Server Error"});
+    }
 }
 
 export default {
