@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js"
 import ConnectToMongoDB from "./db/ConnectToMongoDB.js";
 import messageRoutes from "./routes/messageRoutes.js";
+import usersRoutes from "./routes/usersRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -16,6 +17,7 @@ app.use(cookieParser());  //It is used to parse cookies attached to the client r
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/users", usersRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server runnung on port ${PORT}`)
