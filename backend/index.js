@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import authRoutes from "./routes/authRoutes.js"
 import ConnectToMongoDB from "./db/ConnectToMongoDB.js";
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 4000;
 
 dotenv.config();
 
+app.use(cors());
 app.use(express.json());  //to parse the incoming requests with JSON payloads (from req.body)
 app.use(cookieParser());  //It is used to parse cookies attached to the client request object. This allows you to easily access cookie values and manage cookies
 
