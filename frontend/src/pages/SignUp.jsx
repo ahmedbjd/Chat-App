@@ -6,10 +6,10 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     return (
-    <div className='w-[28vw] hover:cursor-pointer p-6 bg-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10'>
+    <div className='w-[600px] max-md:w-[95%] mx-4 hover:cursor-pointer p-6 bg-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10'>
       <h1 className='text-4xl font-semibold text-center text-gray-300'>Sign Up <span className='text-blue-600'>ChatApp</span></h1>
 
-      <form className='flex flex-col text-gray-200 space-y-2'>
+      <form className='flex flex-col text-gray-200 space-y-2 mt-5'>
       <label htmlFor="fullname">Full Name</label>
       <input type="text" name="fullname" id="fullname" placeholder='BOUDJEDIENE Ahmed' className='bg-gray-800 text-gray-400 py-2 px-5 rounded-lg' />
 
