@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios';
-import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,13 +9,14 @@ const useLogin = () => {
     const navigate = useNavigate();
 
     const login = async (username, password) => {
-        const success = handleInputErrors(username, password);
+        const success = handleInputErrors(username, password ,setErrorState);
         if (!success) return;
         setErrorState(null);
         setLoadingState(true);
-        try {console.log({username, password})
+        try {
            const response = await axios.post('http://localhost:4000/api/auth/login', {username, password});
            const data = response.data;
+           console.log(data);
            navigate('/');
         } catch (error) {
             setErrorState(error.response?.data?.error || 'Login failed');
@@ -30,9 +30,9 @@ const useLogin = () => {
 
 export default useLogin
 
-function handleInputErrors(username, password) {
+function handleInputErrors(username, password, setErrorState) {
 	if (!username || !password) {
-		toast.error("Please fill in all fields");
+		setErrorState("Please fill in all fields");
 		return false;
 	}
 
