@@ -3,6 +3,7 @@ import React, { useContext, createContext, useState } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
+    const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem("chat-user")) || null);
     const [error, seError] = useState();
     const [loading, setLoading] = useState();
 
@@ -15,7 +16,7 @@ export const AuthProvider = ({children}) => {
     }
 
     return(
-        <AuthContext.Provider value={{ loading, error, setErrorState, setLoadingState }}>
+        <AuthContext.Provider value={{ authUser, loading, error, setAuthUser, setErrorState, setLoadingState }}>
             {children}
         </AuthContext.Provider>
     )

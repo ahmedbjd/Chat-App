@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import useSignup from '../hooks/useSignup';
 
 const SignUp = () => {
 
-    const navigate = useNavigate();
     const { signup } = useSignup();
     const { error, loading } = useAuth();
     const [formData, setFormData] = useState({
@@ -109,7 +108,7 @@ const SignUp = () => {
         </div>
     ) : ''}
          
-          <a onClick={() => navigate('/login')} className='hover:text-blue-600 hover:underline pb-2'>Already have an account?</a>
+          <Link to={'/login'} className='hover:text-blue-600 hover:underline pb-2'>Already have an account?</Link>
           <button type="submit" className='text-center bg-gray-800 text-gray-400 p-2 rounded-lg hover:text-white hover:bg-gray-900'>Login</button>
       </form>
     </div>

@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import useLogin from '../hooks/useLogin';
 import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
 
-  const navigate = useNavigate();
   const { login } = useLogin();
   const { error, loading } = useAuth();
 
@@ -58,7 +57,7 @@ const Login = () => {
                   </div>
               ) : ''}
 
-          <a onClick={() => navigate('/signup')} className='hover:text-blue-600 hover:underline py-2'>Don't have an account?</a>
+          <Link to={'/signup'} className='hover:text-blue-600 hover:underline py-2'>Don't have an account?</Link>
           <button type="submit" className='text-center bg-gray-800 text-gray-400 p-2 rounded-lg hover:text-white hover:bg-gray-900'>Login</button>
       </form>
     </div>

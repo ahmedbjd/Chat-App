@@ -14,12 +14,12 @@ const useSignup = () => {
 
         setLoadingState(true);
         try {
-            const response = await axios.post('http://localhost:4000/api/auth/signup', {fullName, username, password, confirmPassword, gender});
+            const response = await axios.post('/api/auth/signup', {fullName, username, password, confirmPassword, gender});
             const data = response.data;
-            console.log(data);
-            if (response.status === 201){
-                navigate("/");
+            if (data.error){
+                throw new Error(data.error)
             }
+            navigate("/");
         } catch (error) {
             setErrorState(error.response?.data?.error || 'SignUp failed');
         }finally{

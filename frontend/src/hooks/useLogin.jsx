@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const useLogin = () => {
 
-    const { setLoadingState, setErrorState } = useAuth();
+    const { setLoadingState, setErrorState, setAuthUser } = useAuth();
     const navigate = useNavigate();
 
     const login = async (username, password) => {
@@ -14,9 +14,13 @@ const useLogin = () => {
         setErrorState(null);
         setLoadingState(true);
         try {
-           const response = await axios.post('http://localhost:4000/api/auth/login', {username, password});
+           const response = await axios.post('/api/auth/login', {username, password});
            const data = response.data;
-           console.log(data);
+           if (response.error){
+            throw new Error(response.error)
+           }
+           localStorage.setItem("chat-user", JSON.stringify(data));
+           await setAuthUser(data);
            navigate('/');
         } catch (error) {
             setErrorState(error.response?.data?.error || 'Login failed');
