@@ -29,7 +29,7 @@ const Login = () => {
 
 
   return (
-    <div className='w-[600px] max-md:w-[95%] mx-4 hover:cursor-pointer p-6 bg-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10'>
+    <div className='w-[600px] max-md:w-[95%] mx-4 hover:cursor-pointer p-6 bg-gray-600 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10'>
       <h1 className='text-4xl font-semibold text-center text-gray-300'>Login <span className='text-blue-600'>ChatApp</span></h1>
 
       <form className='flex flex-col text-gray-200 space-y-2 mt-5' onSubmit={handleSubmit}>
