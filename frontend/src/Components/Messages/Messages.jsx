@@ -15,9 +15,7 @@ const Messages = () => {
            :  (Array.isArray(messages) && messages.map((message) => (
                 <Message  
                   key={message._id}
-                  message={message.message}
-                  senderId={message.senderId}
-                  time={message.createdAt}
+                  message={message}
                 />
               )))
           }
