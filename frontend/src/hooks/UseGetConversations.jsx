@@ -3,11 +3,12 @@ import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
 const UseGetConversations = () => {
-    const {setLoadingState, setErrorState} = useAuth();
+    const {setErrorState} = useAuth();
     const [conversations, setConversations] = useState([]);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
       const getConversations = async () => {
-        setLoadingState(true);
+        setLoading(true);
         try {
           const response = await axios.get('/api/users');
           if (response.error){
@@ -18,14 +19,14 @@ const UseGetConversations = () => {
         } catch (error) {
           setErrorState(error.message);
         }finally{
-          setLoadingState(false);
+          setLoading(false);
         }
       }
 
       getConversations();
     }, []);
 
-    return {conversations};
+    return {conversations, loading};
 }
 
 export default UseGetConversations;

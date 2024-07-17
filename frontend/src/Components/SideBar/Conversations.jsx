@@ -4,8 +4,8 @@ import UseGetConversations from '../../hooks/UseGetConversations';
 import { useAuth } from '../../context/AuthContext';
 
 const Conversations = () => {
-  const {loading, error} = useAuth();
-  const {conversations} = UseGetConversations();
+  const {error} = useAuth();
+  const {conversations, loading} = UseGetConversations();
   return (
     <main className='space-y-2 flex-1 overflow-auto custom-scrollbar'>
       {Array.isArray(conversations.allUsers) && conversations.allUsers.map((conversation) => (
