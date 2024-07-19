@@ -6,8 +6,9 @@ const Message = ({ message }) => {
   const { authUser } = useAuth();
   const {selectedConversation} = useConversations();
   const fromMe = authUser?._id === message.senderId;
+  const fromFriend = selectedConversation?._id === message.senderId;
   const chatClassName = fromMe ? 'chat-end' : 'chat-start';
-  const profilePic = fromMe ? authUser.profilePic : selectedConversation.profilePic ;
+  const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic ;
 
   // Function to format the time
   const formatTime = (isoString) => {
@@ -17,7 +18,8 @@ const Message = ({ message }) => {
 
   return (
     <div className='m-3'>
-        <div className={`chat ${chatClassName}`}>
+       {(fromMe || fromFriend) ? 
+         <div className={`chat ${chatClassName}`}>
           <div className="chat-image avatar online">
             <div className="w-12 rounded-full">
               <img
@@ -28,7 +30,8 @@ const Message = ({ message }) => {
           </div>
           <div className={`chat-bubble text-white ${fromMe ? 'bg-blue-500' : ''}`}>{message.message}</div>
           <time className="chat-footer text-gray-300">{formatTime(message.createdAt)}</time>
-        </div>
+       </div> : ''
+      }
     </div>
   );
 };

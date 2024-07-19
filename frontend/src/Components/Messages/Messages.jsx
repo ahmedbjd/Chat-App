@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Message from './Message';
 import UseGetMessages from '../../hooks/UseGetMessages';
 
 const Messages = () => {
   const {messages, loading} = UseGetMessages(); 
+  const lastMessageRef = useRef();
+
+  useEffect(() => {
+    setTimeout(() => {
+      lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100)
+  }, [messages]);
+
   return (
     <div className='flex-1 relative overflow-auto custom-scrollbar'>
          {loading ? (
@@ -12,11 +20,12 @@ const Messages = () => {
                       <span class="sr-only">Loading...</span>
                   </div>
               ) : messages.length === 0 ?  <p className='text-center mt-3'>Send a message to start the conversation</p> 
-           :  (Array.isArray(messages) && messages.map((message) => (
-                <Message  
-                  key={message._id}
-                  message={message}
-                />
+           :  (Array.isArray(messages) && messages.map((message) => ( 
+                <div  key={message._id} ref={lastMessageRef}>
+                  <Message  
+                    message={message}
+                  />
+                </div>
               )))
           }
       
